@@ -1,0 +1,7 @@
+{
+  "name": "my-credential",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
