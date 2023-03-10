@@ -1,0 +1,193 @@
+import { IonAvatar, IonCard, IonCardContent, IonCardHeader, IonCol, IonContent, IonGrid, IonHeader, IonIcon, IonImg, IonItem, IonLabel, IonPage, IonProgressBar, IonRow, IonTitle, IonToolbar, useIonToast } from '@ionic/react';
+import './Tab1.css';
+import Pocketbase from '../utils/Pocketbase';
+import { useCallback, useEffect, useState } from 'react';
+import "./global.css";
+import moment from 'moment';
+import { IUserResponse } from '../interfaces/IResponse';
+import { imgBaseUrl } from '../utils/Helper';
+
+const Home: React.FC = () => {
+
+  // const [plaformList, setPlatformList] = useState<any[]>([])
+  const [taskList, setTaskList] = useState<any[]>([]);
+  const [taskStatusList, setTaskStatusList] = useState<any[]>([]);
+  const [repairList, setRepairList] = useState<any[]>([]);
+  const [undoneList, setUndoneList] = useState<any[]>([]);
+  const [usersList, setUsersList] = useState<any[]>([]);
+  const [toast] = useIonToast();
+
+  const fetchTasks = useCallback(async () => {
+    try {
+      const records = await Pocketbase.collection('tasks').getFullList()
+      setTaskList(records);
+    } catch (error: any) {
+      if (error.status !== 0) toast({
+        message: "Terjadi kesalahan. " + error.message,
+        position: "top",
+        color: "danger",
+        duration: 2000
+      })
+    }
+  }, [])
+
+  const fetchUser = useCallback(async () => {
+    try {
+      const records = await Pocketbase.collection('users').getFullList()
+      setUsersList(records);
+    } catch (error: any) {
+      if (error.status !== 0) toast({
+        message: "Terjadi kesalahan. " + error.message,
+        position: "top",
+        color: "danger",
+        duration: 2000
+      })
+    }
+  }, [])
+
+  const fetchTasksStatus = useCallback(async () => {
+    try {
+      const records = await Pocketbase.collection('status').getFullList({
+        filter: `created>='${moment(new Date()).locale('id').format('Y-MM-DD 00:00:00')}'`
+      })
+      setTaskStatusList(records);
+    } catch (error: any) {
+      if (error.status !== 0) toast({
+        message: "Terjadi kesalahan. " + error.message,
+        position: "top",
+        color: "danger",
+        duration: 2000
+      })
+    }
+  }, [])
+
+  const fetchRepair = useCallback(async () => {
+    try {
+      const records = await Pocketbase.collection('repair').getFullList()
+      setRepairList(records);
+      setUndoneList(records.filter(val => val.status === 'Beres'));
+    } catch (error: any) {
+      if (error.status !== 0) toast({
+        message: "Terjadi kesalahan. " + error.message,
+        position: "top",
+        color: "danger",
+        duration: 2000
+      })
+    }
+  }, [])
+
+  useEffect(() => {
+    fetchTasks();
+    fetchTasksStatus();
+    fetchRepair();
+    fetchUser();
+
+    return function cleanup() {
+      setTaskList([]);
+      setTaskStatusList([]);
+      setRepairList([]);
+      setUndoneList([])
+    }
+  }, [fetchTasks, toast, fetchTasksStatus, setRepairList])
+
+  return (
+    <IonPage>
+      <IonHeader >
+        <IonToolbar color={'tertiary'}>
+          <IonTitle>Home</IonTitle>
+        </IonToolbar>
+
+      </IonHeader>
+      <IonContent fullscreen className='ion-padding ion-margin-bot'>
+        <div id="mjeUkvKhqX8az6a9VS5f">
+          <IonGrid class="ion-no-padding">
+            <IonRow>
+              <IonCol size="12">
+                <IonCard class="card">
+                  <IonCardHeader class="ion-no-padding">
+                    <IonItem lines="none">
+                      <IonLabel class="">
+                        <span className="title">Aktivitas</span>
+                      </IonLabel>
+                    </IonItem>
+                  </IonCardHeader>
+                  <IonCardContent>
+                    <IonGrid class="ion-no-padding">
+                      <IonRow class="a-section ion-no-padding">
+                        <IonCol size="3">
+                          <IonImg src="https://cdn-icons-png.flaticon.com/512/744/744970.png"></IonImg>
+                        </IonCol>
+                        <IonCol size="9">
+                          <IonLabel>
+                            <span className="title">Tugas Harian</span>
+                            <span className="sub-title">
+                              Tugas Rutinan IT
+                            </span>
+                          </IonLabel>
+                          {
+                            (taskStatusList.length === taskList.length)
+                              ? <IonLabel class="a-status">DONE</IonLabel>
+                              : <IonProgressBar value={parseFloat((taskStatusList.length / taskList.length).toFixed(2))}></IonProgressBar>
+                          }
+                          <IonLabel class="count">{taskStatusList.length}/{taskList.length}</IonLabel>
+                        </IonCol>
+                      </IonRow>
+                      <IonRow class="a-section ion-no-padding">
+                        <IonCol size="3">
+                          <IonImg src="/assets/icon/repair.png"></IonImg>
+                        </IonCol>
+                        <IonCol size="9">
+                          <IonLabel>
+                            <span className="title">Perbaikan</span>
+                            <span className="sub-title">
+                              Perbaikan barang elektronik
+                            </span>
+                          </IonLabel>
+                          {
+                            (undoneList.length === repairList.length)
+                              ? <IonLabel class="a-status">DONE</IonLabel>
+                              : <IonProgressBar value={parseFloat((undoneList.length / repairList.length).toFixed(2))}></IonProgressBar>
+                          }
+                          <IonLabel class="count">{undoneList.length}/{repairList.length}</IonLabel>
+                        </IonCol>
+                      </IonRow>
+                    </IonGrid>
+                  </IonCardContent>
+                </IonCard>
+              </IonCol>
+            </IonRow>
+          </IonGrid>
+        </div>
+
+
+        <div id="nlDMVfmAaPpJLR5qW4IG">
+          <IonGrid class="widget">
+            <IonRow class="ion-padding-vertical">
+              <IonCol size="12">
+                <IonTitle class="ion-text-start">Admins</IonTitle>
+              </IonCol>
+            </IonRow>
+            <IonRow>
+              {usersList.map((row: IUserResponse) => {
+                return <IonCol key={row.id} size="3" class="ion-text-center ion-margin-bottom">
+                  <div className="contact-person">
+                    <IonAvatar>
+                      <img
+                        alt="avatar"
+                        src={imgBaseUrl({ collectionId: row.collectionId, id: row.id }, row.avatar)}
+                      />
+                    </IonAvatar>
+                  </div>
+                  <IonLabel class="name">{row.name}</IonLabel>
+                </IonCol>
+              })}
+
+            </IonRow>
+          </IonGrid>
+        </div>
+      </IonContent>
+    </IonPage>
+  );
+};
+
+export default Home;
