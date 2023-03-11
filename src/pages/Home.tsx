@@ -1,11 +1,11 @@
 import { IonAvatar, IonCard, IonCardContent, IonCardHeader, IonCol, IonContent, IonGrid, IonHeader, IonIcon, IonImg, IonItem, IonLabel, IonPage, IonProgressBar, IonRow, IonTitle, IonToolbar, useIonToast } from '@ionic/react';
-import './Tab1.css';
 import Pocketbase from '../utils/Pocketbase';
 import { useCallback, useEffect, useState } from 'react';
 import "./global.css";
 import moment from 'moment';
 import { IUserResponse } from '../interfaces/IResponse';
 import { imgBaseUrl } from '../utils/Helper';
+import DefaultHeader from '../components/DefaultHeader';
 
 const Home: React.FC = () => {
 
@@ -18,6 +18,9 @@ const Home: React.FC = () => {
   const [toast] = useIonToast();
 
   const fetchTasks = useCallback(async () => {
+    console.log(Pocketbase.authStore.isValid);
+    console.log(Pocketbase.authStore.token);
+    console.log(Pocketbase.authStore.model);
     try {
       const records = await Pocketbase.collection('tasks').getFullList()
       setTaskList(records);
@@ -92,12 +95,7 @@ const Home: React.FC = () => {
 
   return (
     <IonPage>
-      <IonHeader >
-        <IonToolbar color={'tertiary'}>
-          <IonTitle>Home</IonTitle>
-        </IonToolbar>
-
-      </IonHeader>
+      <DefaultHeader title='Home' />
       <IonContent fullscreen className='ion-padding ion-margin-bot'>
         <div id="mjeUkvKhqX8az6a9VS5f">
           <IonGrid class="ion-no-padding">

@@ -5,6 +5,7 @@ import Pocketbase from '../utils/Pocketbase';
 import { useCallback, useEffect, useState } from 'react';
 import { IPlatformResponse } from '../interfaces/IResponse';
 import AddPlatform from '../components/FormPlatform';
+import DefaultHeader from '../components/DefaultHeader';
 
 const Platform: React.FC = () => {
 
@@ -93,16 +94,13 @@ const Platform: React.FC = () => {
 
 	return (
 		<IonPage>
-			<IonHeader >
-				<IonToolbar color={'tertiary'}>
-					<IonTitle>Home</IonTitle>
-					<IonButtons slot='end'>
-						<IonButton shape={"round"} onClick={() => setIsModal(true)}>
-							<IonIcon size='large' icon={add}></IonIcon>
-						</IonButton>
-					</IonButtons>
-				</IonToolbar>
-			</IonHeader>
+			<DefaultHeader
+				title='Platform'
+				leftButton={() => (
+					<IonButton shape={"round"} onClick={() => setIsModal(true)}>
+						<IonIcon size='large' icon={add}></IonIcon>
+					</IonButton>
+				)} />
 			<IonContent fullscreen>
 				<div className='ion-padding'>
 					<IonText>Platform List</IonText>
