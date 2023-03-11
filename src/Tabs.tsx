@@ -9,8 +9,16 @@ import Repair from "./pages/Repair";
 import Home from "./pages/Home";
 import Settings from "./pages/Settings";
 import Users from "./pages/Users";
+import { AuthContext } from "./context/AuthContext";
+import Login from "./pages/Login";
 
 export default function Tabs() {
+
+	const { state } = React.useContext(AuthContext);
+
+	if (!state.valid) {
+		return <Login />
+	}
 
 	return (
 		<IonTabs>

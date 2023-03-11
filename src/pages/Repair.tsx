@@ -9,6 +9,7 @@ import moment from "moment";
 import "moment/locale/id"
 import "./global.css"
 import { iconRepair, imgBaseUrl } from "../utils/Helper";
+import DefaultHeader from "../components/DefaultHeader";
 
 type IFormInputs = {
 	jenis: string;
@@ -162,16 +163,13 @@ export default function Repair() {
 
 	return (
 		<IonPage>
-			<IonHeader>
-				<IonToolbar color={"tertiary"}>
-					<IonTitle>Repair</IonTitle>
-					<IonButtons slot="end">
-						<IonButton onClick={() => setIsOpen(true)}>
-							<IonIcon size='large' icon={add} />
-						</IonButton>
-					</IonButtons>
-				</IonToolbar>
-			</IonHeader>
+			<DefaultHeader title="Repair" leftButton={
+				() => (
+					<IonButton onClick={() => setIsOpen(true)}>
+						<IonIcon size='large' icon={add} />
+					</IonButton>
+				)
+			} />
 			<IonContent className="ion-padding">
 				<div id="P9SIgntEkYBufhuledH9">
 					<IonGrid class="ion-no-padding">

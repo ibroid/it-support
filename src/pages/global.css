@@ -476,3 +476,74 @@ ion-spinner {
 #Hr5eGhMoCtu7JgRPQuvs .card .count.negative {
     color: #ff526a;
 }
+
+#pPKdCQzxCZHeKWYWF5PW {
+    --background: #191919 !important;
+    --color: #f4f5f8 !important;
+}
+
+#pPKdCQzxCZHeKWYWF5PW .login-bg {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+#pPKdCQzxCZHeKWYWF5PW .login-bg form {
+    width: 100%;
+}
+
+#pPKdCQzxCZHeKWYWF5PW .login-bg .card {
+    background-color: #212121 !important;
+    border-radius: 20px;
+    margin: 0;
+    padding: 20px;
+}
+
+@media (max-width: 767px) {
+    #pPKdCQzxCZHeKWYWF5PW .login-bg .card {
+        height: 98vh;
+        display: flex;
+        align-items: center;
+    }
+}
+
+#pPKdCQzxCZHeKWYWF5PW .login-bg .title {
+    font-weight: 500 !important;
+    font-size: 1.75rem !important;
+    letter-spacing: 1px;
+}
+
+#pPKdCQzxCZHeKWYWF5PW .login-bg ion-item {
+    --border-radius: 50px;
+    border-radius: 50px;
+    --background: #2e2e2e !important;
+    --color: #f4f5f8 !important;
+    letter-spacing: 1px;
+}
+
+#pPKdCQzxCZHeKWYWF5PW .login-bg ion-item ion-label {
+    padding: 2.5px 10px !important;
+}
+
+#pPKdCQzxCZHeKWYWF5PW .login-bg ion-item ion-input {
+    padding: 2.5px 10px !important;
+}
+
+#pPKdCQzxCZHeKWYWF5PW .login-bg a.fp {
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    float: right;
+    margin-top: 10px;
+    text-decoration: none !important;
+}
+
+#pPKdCQzxCZHeKWYWF5PW .login-bg .login-button,
+#pPKdCQzxCZHeKWYWF5PW .login-bg .back-button {
+    font-weight: 600 !important;
+    width: 100% !important;
+    letter-spacing: 1px;
+}
+
+#pPKdCQzxCZHeKWYWF5PW .item-interactive.item-has-focus {
+    --highlight-background: transparent !important;
+}

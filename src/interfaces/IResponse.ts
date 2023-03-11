@@ -60,3 +60,19 @@ export interface IUserResponse {
     name: string;
     avatar: string;
 }
+
+export interface IAuthContext {
+    state: IStateAuth,
+    deState: IDeStateAuth
+}
+
+export interface IStateAuth {
+    token: string;
+    valid: boolean;
+    user: IUserResponse | any
+}
+
+export interface IDeStateAuth {
+    login: Function;
+    logout: Function;
+}

@@ -1,17 +1,15 @@
-import { IonContent, IonHeader, IonIcon, IonItem, IonLabel, IonList, IonPage, IonTitle, IonToolbar, useIonRouter } from "@ionic/react";
-import { personCircleOutline } from "ionicons/icons";
+import { IonButton, IonContent, IonHeader, IonIcon, IonItem, IonLabel, IonList, IonPage, IonTitle, IonToolbar, useIonRouter } from "@ionic/react";
+import { logOutOutline, personCircleOutline } from "ionicons/icons";
+import { useContext } from "react";
+import DefaultHeader from "../components/DefaultHeader";
+import { AuthContext } from "../context/AuthContext";
 
 export default function Settings() {
     const nav = useIonRouter();
+    const { deState } = useContext(AuthContext);
     return (
         <IonPage>
-            <IonHeader>
-                <IonToolbar color={"tertiary"}>
-                    <IonTitle>
-                        Settings
-                    </IonTitle>
-                </IonToolbar>
-            </IonHeader>
+            <DefaultHeader title="Settings" />
             <IonContent fullscreen className="ion-padding-vertical">
                 <IonList>
                     <IonItem button onClick={() => nav.push('/app/settings/users', 'forward', 'push')}>
@@ -21,7 +19,16 @@ export default function Settings() {
                         <IonLabel>Users</IonLabel>
                     </IonItem>
                 </IonList>
+                <IonButton
+                    onClick={() => {
+                        deState.logout();
+                        nav.push('/', 'root', 'replace');
+                    }}
+                    expand="block" color={"danger"} className="ion-margin">
+                    <IonIcon icon={logOutOutline} />
+                    Logout
+                </IonButton>
             </IonContent>
-        </IonPage>
+        </IonPage >
     )
 }
