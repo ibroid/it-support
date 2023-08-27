@@ -98,20 +98,20 @@ const Home: React.FC = () => {
       <DefaultHeader title='Home' />
       <IonContent fullscreen className='ion-padding ion-margin-bot'>
         <div id="mjeUkvKhqX8az6a9VS5f">
-          <IonGrid class="ion-no-padding">
+          <IonGrid className="ion-no-padding">
             <IonRow>
               <IonCol size="12">
-                <IonCard class="card">
-                  <IonCardHeader class="ion-no-padding">
+                <IonCard className="card">
+                  <IonCardHeader className="ion-no-padding">
                     <IonItem lines="none">
-                      <IonLabel class="">
+                      <IonLabel className="">
                         <span className="title">Aktivitas</span>
                       </IonLabel>
                     </IonItem>
                   </IonCardHeader>
                   <IonCardContent>
-                    <IonGrid class="ion-no-padding">
-                      <IonRow class="a-section ion-no-padding">
+                    <IonGrid className="ion-no-padding">
+                      <IonRow className="a-section ion-no-padding">
                         <IonCol size="3">
                           <IonImg src="https://cdn-icons-png.flaticon.com/512/744/744970.png"></IonImg>
                         </IonCol>
@@ -124,13 +124,13 @@ const Home: React.FC = () => {
                           </IonLabel>
                           {
                             (taskStatusList.length === taskList.length)
-                              ? <IonLabel class="a-status">DONE</IonLabel>
+                              ? <IonLabel className="a-status">DONE</IonLabel>
                               : <IonProgressBar value={parseFloat((taskStatusList.length / taskList.length).toFixed(2))}></IonProgressBar>
                           }
-                          <IonLabel class="count">{taskStatusList.length}/{taskList.length}</IonLabel>
+                          <IonLabel className="count">{taskStatusList.length}/{taskList.length}</IonLabel>
                         </IonCol>
                       </IonRow>
-                      <IonRow class="a-section ion-no-padding">
+                      <IonRow className="a-section ion-no-padding">
                         <IonCol size="3">
                           <IonImg src="/assets/icon/repair.png"></IonImg>
                         </IonCol>
@@ -143,10 +143,10 @@ const Home: React.FC = () => {
                           </IonLabel>
                           {
                             (undoneList.length === repairList.length)
-                              ? <IonLabel class="a-status">DONE</IonLabel>
+                              ? <IonLabel className="a-status">DONE</IonLabel>
                               : <IonProgressBar value={parseFloat((undoneList.length / repairList.length).toFixed(2))}></IonProgressBar>
                           }
-                          <IonLabel class="count">{undoneList.length}/{repairList.length}</IonLabel>
+                          <IonLabel className="count">{undoneList.length}/{repairList.length}</IonLabel>
                         </IonCol>
                       </IonRow>
                     </IonGrid>
@@ -159,15 +159,15 @@ const Home: React.FC = () => {
 
 
         <div id="nlDMVfmAaPpJLR5qW4IG">
-          <IonGrid class="widget">
-            <IonRow class="ion-padding-vertical">
+          <IonGrid className="widget">
+            <IonRow className="ion-padding-vertical">
               <IonCol size="12">
-                <IonTitle class="ion-text-start">Admins</IonTitle>
+                <IonTitle className="ion-text-start">Admins</IonTitle>
               </IonCol>
             </IonRow>
             <IonRow>
               {usersList.map((row: IUserResponse) => {
-                return <IonCol key={row.id} size="3" class="ion-text-center ion-margin-bottom">
+                return <IonCol key={row.id} size="3" className="ion-text-center ion-margin-bottom">
                   <div className="contact-person">
                     <IonAvatar>
                       <img
@@ -176,7 +176,7 @@ const Home: React.FC = () => {
                       />
                     </IonAvatar>
                   </div>
-                  <IonLabel class="name">{row.name}</IonLabel>
+                  <IonLabel className="name">{row.name}</IonLabel>
                 </IonCol>
               })}
 

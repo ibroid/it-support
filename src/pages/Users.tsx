@@ -102,11 +102,11 @@ export default function Users() {
 					</IonTitle>
 				</IonToolbar>
 			</IonHeader>
-			<IonContent class="ion-padding-vertical" fullscreen>
+			<IonContent className="ion-padding-vertical" fullscreen>
 				<IonGrid>
 					<IonRow>
-						<IonCol class="ion-no-padding ion-no-margin">
-							<IonText class="ion-text-center ion-no-padding">
+						<IonCol className="ion-no-padding ion-no-margin">
+							<IonText className="ion-text-center ion-no-padding">
 								<p>Form User</p>
 							</IonText>
 						</IonCol>
@@ -142,15 +142,15 @@ export default function Users() {
 					</IonList>
 					<div className="ion-padding">
 						<IonButton type="submit" expand="block" color={"success"}>
-							<IonIcon class="ion-margin-end" icon={saveOutline} />
+							<IonIcon className="ion-margin-end" icon={saveOutline} />
 							Simpan
 						</IonButton>
 					</div>
 				</form>
 				<IonGrid>
 					<IonRow>
-						<IonCol class="ion-no-padding ion-no-margin">
-							<IonText class="ion-text-center ion-no-padding">
+						<IonCol className="ion-no-padding ion-no-margin">
+							<IonText className="ion-text-center ion-no-padding">
 								<p>Daftar User</p>
 							</IonText>
 						</IonCol>
