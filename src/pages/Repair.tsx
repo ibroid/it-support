@@ -172,17 +172,17 @@ export default function Repair() {
 			} />
 			<IonContent className="ion-padding">
 				<div id="P9SIgntEkYBufhuledH9">
-					<IonGrid class="ion-no-padding">
+					<IonGrid className="ion-no-padding">
 						<IonRow>
 							<IonCol size="12">
-								<IonCard class="card">
-									<IonCardContent class="ion-padding-vertical ion-no-padding">
-										<IonLabel class="ion-padding-horizontal">
+								<IonCard className="card">
+									<IonCardContent className="ion-padding-vertical ion-no-padding">
+										<IonLabel className="ion-padding-horizontal">
 											<span className="title">Daftar Perbaikan</span>
 										</IonLabel>
 										{repairList.map((row: IRepairResponse) => (
-											<IonItem onClick={() => openOption(row)} key={row.id} class="" lines="none">
-												<IonAvatar slot="start" class="large">
+											<IonItem onClick={() => openOption(row)} key={row.id} className="" lines="none">
+												<IonAvatar slot="start" className="large">
 													<IonIcon color={"tertiary"} icon={iconRepair(row.jenis)}></IonIcon>
 												</IonAvatar>
 												<IonLabel>

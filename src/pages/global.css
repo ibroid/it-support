@@ -189,7 +189,7 @@ ion-header ion-toolbar {
         background: #fff;
     }
 
-    body ion-app {
+    /* body ion-app {
         top: 50% !important;
         left: 50% !important;
         transform: translate(-50%, -50%);
@@ -200,7 +200,7 @@ ion-header ion-toolbar {
         border-radius: 32px;
         box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
         border: 8px solid #424242 !important;
-    }
+    } */
 }
 
 #P9SIgntEkYBufhuledH9 .card {
