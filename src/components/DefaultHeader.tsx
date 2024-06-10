@@ -1,5 +1,4 @@
 import { IonAvatar, IonButtons, IonChip, IonHeader, IonIcon, IonImg, IonLabel, IonTitle, IonToolbar } from "@ionic/react";
-import { logOutOutline } from "ionicons/icons";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { imgBaseUrl } from "../utils/Helper";
