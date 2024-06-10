@@ -17,9 +17,9 @@ export default function Login() {
 	const { deState } = React.useContext(AuthContext);
 
 	const doLogin = async (data: IFormInput) => {
-		await Pocketbase.collection("users").authWithPassword(data.username, data.password);
+		const loginResponse = await Pocketbase.collection("users").authWithPassword(data.username, data.password);
 
-		deState.login(Pocketbase.authStore.token, Pocketbase.authStore.model);
+		deState.login(loginResponse.token, loginResponse.record);
 		nav.push('/app', 'root', 'replace');
 	}
 

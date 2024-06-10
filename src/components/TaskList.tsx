@@ -1,6 +1,8 @@
 import { IonList, IonItem, IonIcon, IonCol, IonLabel, IonText, IonCheckbox, useIonToast } from "@ionic/react"
 import { checkmarkCircleOutline, closeCircleOutline } from "ionicons/icons"
-import moment from "moment"
+import { format, formatDistanceToNow, parseISO } from "date-fns"
+import { id } from 'date-fns/locale';
+
 import { useEffect, useState } from "react"
 import { ITaskResponse } from "../interfaces/IResponse"
 import Pocketbase from "../utils/Pocketbase"
@@ -13,14 +15,15 @@ export default function TaskList(props: ChildProps) {
 	const [taskList, setTaskList] = useState<any[]>([]);
 	const [statusList, setStatusTaskList] = useState<any[]>([]);
 	const [toast] = useIonToast();
-	const [ref, setRef] = useState<number>(0);
+	const [ref] = useState<number>(0);
 
 	useEffect(() => {
 		(async function init() {
 			try {
 				const records = await Pocketbase.collection('tasks').getFullList();
 
-				const status = await Pocketbase.collection('status').getFullList({ filter: `created>='${moment(new Date()).locale('id').format('Y-MM-DD 00:00:00')}'` });
+				const today = format(new Date(), 'yyyy-MM-dd HH:mm:ss');
+				const status = await Pocketbase.collection('status').getFullList({ filter: `created>='${today}'` });
 
 				setTaskList(records);
 				setStatusTaskList(status);
@@ -41,7 +44,7 @@ export default function TaskList(props: ChildProps) {
 			setTaskList([])
 			setStatusTaskList([])
 		}
-	}, [ref]);
+	}, [ref, toast]);
 
 	return (
 		<IonList>
@@ -54,7 +57,7 @@ export default function TaskList(props: ChildProps) {
 						icon={row.status ? checkmarkCircleOutline : closeCircleOutline} />
 					<IonCol className="ion-no-margin">
 						<IonLabel>{row.todo}</IonLabel>
-						<IonText>{moment(row.status?.created).locale('id').fromNow()}</IonText>
+						<IonText>{formatDistanceToNow(parseISO(row.status?.created), { addSuffix: true, locale: id })}</IonText>
 					</IonCol>
 					<IonCheckbox defaultChecked={row.status?.done} onIonChange={(e) => props.checkOut(e, row)} checked={row.status?.done} />
 				</IonItem>

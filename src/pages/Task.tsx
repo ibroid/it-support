@@ -1,7 +1,6 @@
 import { IonButton, IonButtons, IonContent, IonHeader, IonIcon, IonPage, IonSpinner, IonText, IonTitle, IonToolbar, useIonToast } from "@ionic/react";
 import { arrowBack } from "ionicons/icons";
 
-import "moment/locale/id";
 import { useState } from "react";
 import TaskList from "../components/TaskList";
 import { ITaskResponse } from "../interfaces/IResponse";

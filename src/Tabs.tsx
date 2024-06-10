@@ -15,21 +15,21 @@ import Login from "./pages/Login";
 export default function Tabs() {
 
 	const { state } = React.useContext(AuthContext);
-
-	if (!state.valid) {
+	console.log(state)
+	if (!state.token) {
 		return <Login />
 	}
 
 	return (
 		<IonTabs>
 			<IonRouterOutlet>
-				<Route exact path="/app/home" component={Home} />
-				<Route exact path="/app/platform" component={Platform} />
-				<Route exact path="/app/platform/:id/credential" component={Credential} />
-				<Route exact path="/app/repair" component={Repair} />
-				<Route exact path="/app/settings" component={Settings} />
-				<Route exact path="/app/settings/users" component={Users} />
-				<Route exact path={"/app"}>
+				<Route path="/app/home" component={Home} />
+				<Route path="/app/platform" component={Platform} />
+				<Route path="/app/platform/:id/credential" component={Credential} />
+				<Route path="/app/repair" component={Repair} />
+				<Route path="/app/settings" component={Settings} />
+				<Route path="/app/settings/users" component={Users} />
+				<Route path={"/app"}>
 					<Redirect to={"/app/home"} />
 				</Route>
 			</IonRouterOutlet>

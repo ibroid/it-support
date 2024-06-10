@@ -5,8 +5,8 @@ import { Camera, CameraResultType } from '@capacitor/camera';
 import { Controller, useForm } from "react-hook-form";
 import Pocketbase from "../utils/Pocketbase";
 import { IRepairResponse } from "../interfaces/IResponse";
-import moment from "moment";
-import "moment/locale/id"
+import { format, formatDistanceToNow, parseISO } from "date-fns"
+import { id } from 'date-fns/locale';
 import "./global.css"
 import { iconRepair, imgBaseUrl } from "../utils/Helper";
 import DefaultHeader from "../components/DefaultHeader";
@@ -187,7 +187,7 @@ export default function Repair() {
 												</IonAvatar>
 												<IonLabel>
 													<span className="user-name">Perbaikan {row.jenis}</span>
-													<span className="date-time">{moment(row.created).locale('id').fromNow()}</span>
+													<span className="date-time">{formatDistanceToNow(parseISO(String(row.created)), { addSuffix: true, locale: id })}</span>
 													<span className="date-time">
 														<p><IonIcon icon={personOutline}></IonIcon> {row.pengguna}</p>
 													</span>

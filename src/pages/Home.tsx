@@ -1,8 +1,9 @@
-import { IonAvatar, IonCard, IonCardContent, IonCardHeader, IonCol, IonContent, IonGrid, IonHeader, IonIcon, IonImg, IonItem, IonLabel, IonPage, IonProgressBar, IonRow, IonTitle, IonToolbar, useIonToast } from '@ionic/react';
+import { IonAvatar, IonCard, IonCardContent, IonCardHeader, IonCol, IonContent, IonGrid, IonImg, IonItem, IonLabel, IonPage, IonProgressBar, IonRow, IonTitle, useIonToast } from '@ionic/react';
 import Pocketbase from '../utils/Pocketbase';
 import { useCallback, useEffect, useState } from 'react';
 import "./global.css";
-import moment from 'moment';
+import { format } from "date-fns"
+import { id } from 'date-fns/locale';
 import { IUserResponse } from '../interfaces/IResponse';
 import { imgBaseUrl } from '../utils/Helper';
 import DefaultHeader from '../components/DefaultHeader';
@@ -51,7 +52,8 @@ const Home: React.FC = () => {
   const fetchTasksStatus = useCallback(async () => {
     try {
       const records = await Pocketbase.collection('status').getFullList({
-        filter: `created>='${moment(new Date()).locale('id').format('Y-MM-DD 00:00:00')}'`
+        filter: `created>='${format(new Date(), 'yyyy-MM-dd 00:00:00', { locale: id })}'`,
+
       })
       setTaskStatusList(records);
     } catch (error: any) {
