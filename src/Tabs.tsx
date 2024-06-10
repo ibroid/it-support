@@ -1,7 +1,7 @@
 import * as React from "react";
 import { IonIcon, IonLabel, IonRouterOutlet, IonTabBar, IonTabButton, IonTabs } from "@ionic/react";
 import { Redirect, Route } from "react-router-dom";
-import { homeOutline, cogOutline, layersOutline, hammerOutline } from "ionicons/icons";
+import { homeOutline, cogOutline, layersOutline, hammerOutline, cubeOutline } from "ionicons/icons";
 import Platform from "./pages/Platform";
 import Credential from "./pages/Credential";
 import "./pages/global.css";
@@ -11,6 +11,7 @@ import Settings from "./pages/Settings";
 import Users from "./pages/Users";
 import { AuthContext } from "./context/AuthContext";
 import Login from "./pages/Login";
+import { Task } from "./pages/Task";
 
 export default function Tabs() {
 
@@ -43,7 +44,9 @@ export default function Tabs() {
 					<IonIcon icon={layersOutline}></IonIcon>
 					<IonLabel>Platform</IonLabel>
 				</IonTabButton>
-				<IonTabButton>
+				<IonTabButton tab="Task" href="/app/tasks">
+					<IonIcon icon={cubeOutline}></IonIcon>
+					<IonLabel>Task</IonLabel>
 				</IonTabButton>
 				<IonTabButton tab="History" href="/app/repair">
 					<IonIcon icon={hammerOutline}></IonIcon>
@@ -54,6 +57,6 @@ export default function Tabs() {
 					<IonLabel>Settings</IonLabel>
 				</IonTabButton>
 			</IonTabBar>
-		</IonTabs>
+		</IonTabs >
 	)
 }

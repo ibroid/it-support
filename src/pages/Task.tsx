@@ -46,11 +46,6 @@ export function Task(props: { close: Function }) {
 			<IonHeader>
 				<IonToolbar color={"tertiary"}>
 					<IonTitle>Task</IonTitle>
-					<IonButtons slot="start">
-						<IonButton onClick={() => props.close()}>
-							<IonIcon slot="icon-only" icon={arrowBack} />
-						</IonButton>
-					</IonButtons>
 				</IonToolbar>
 			</IonHeader>
 			<IonContent className="ion-padding">
