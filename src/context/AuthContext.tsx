@@ -34,7 +34,6 @@ export const AuthProvider = ({ children }: any) => {
 	const deState = useMemo(
 		() => ({
 			login: (token: string, user: any) => {
-				console.log('asuidguiasduis')
 				dispatch({ type: "LOGIN", token, user })
 			},
 			logout: () => {

@@ -1,6 +1,4 @@
-import { AuthContext, AuthProvider } from './context/AuthContext';
-import { IStateAuth, IUserResponse } from './interfaces/IResponse';
-import { useMemo, useReducer } from 'react';
+import { AuthProvider } from './context/AuthContext';
 import { Route } from 'react-router-dom';
 import {
   IonApp,
@@ -30,7 +28,6 @@ import './theme/variables.css';
 import Login from './pages/Login';
 import Tabs from './Tabs';
 import "./pages/global.css"
-import MiddleFab from './components/MIddleFab';
 
 setupIonicReact();
 

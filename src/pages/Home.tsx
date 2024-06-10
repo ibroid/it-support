@@ -19,9 +19,6 @@ const Home: React.FC = () => {
   const [toast] = useIonToast();
 
   const fetchTasks = useCallback(async () => {
-    console.log(Pocketbase.authStore.isValid);
-    console.log(Pocketbase.authStore.token);
-    console.log(Pocketbase.authStore.model);
     try {
       const records = await Pocketbase.collection('tasks').getFullList()
       setTaskList(records);

@@ -23,8 +23,9 @@ export default function TaskList(props: ChildProps) {
 				const records = await Pocketbase.collection('tasks').getFullList();
 
 				const today = format(new Date(), 'yyyy-MM-dd HH:mm:ss');
+				console.log(today)
 				const status = await Pocketbase.collection('status').getFullList({ filter: `created>='${today}'` });
-
+				console.log(status)
 				setTaskList(records);
 				setStatusTaskList(status);
 
@@ -57,7 +58,7 @@ export default function TaskList(props: ChildProps) {
 						icon={row.status ? checkmarkCircleOutline : closeCircleOutline} />
 					<IonCol className="ion-no-margin">
 						<IonLabel>{row.todo}</IonLabel>
-						<IonText>{formatDistanceToNow(parseISO(row.status?.created), { addSuffix: true, locale: id })}</IonText>
+						<IonText>{row.status?.done ? "Selesai" : "Belum Selesai"}</IonText>
 					</IonCol>
 					<IonCheckbox defaultChecked={row.status?.done} onIonChange={(e) => props.checkOut(e, row)} checked={row.status?.done} />
 				</IonItem>
